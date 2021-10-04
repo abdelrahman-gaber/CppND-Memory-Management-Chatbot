@@ -3,7 +3,18 @@
 
 #include <vector>
 #include <string>
+#include <memory>
+#include <fstream>
+#include <sstream>
+#include <iostream>
+#include <iterator>
+#include <tuple>
+#include <algorithm>
+
 #include "chatgui.h"
+#include "graphedge.h"
+#include "graphnode.h"
+#include "chatbot.h"
 
 // forward declarations
 class ChatBot;
@@ -13,15 +24,9 @@ class GraphNode;
 class ChatLogic
 {
 private:
-    //// STUDENT CODE
-    ////
 
     // data handles (owned)
-    std::vector<GraphNode *> _nodes;
-    std::vector<GraphEdge *> _edges;
-
-    ////
-    //// EOF STUDENT CODE
+    std::vector< std::unique_ptr<GraphNode> > _nodes;
 
     // data handles (not owned)
     GraphNode *_currentNode;

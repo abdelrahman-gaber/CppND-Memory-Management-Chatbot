@@ -3,6 +3,10 @@
 
 #include <wx/bitmap.h>
 #include <string>
+#include <iostream>
+#include <random>
+#include <algorithm>
+#include <ctime>
 
 class GraphNode; // forward declaration
 class ChatLogic; // forward declaration
@@ -27,11 +31,10 @@ public:
     ChatBot(std::string filename); // constructor WITH memory allocation
     ~ChatBot();
 
-    //// STUDENT CODE
-    ////
-
-    ////
-    //// EOF STUDENT CODE
+    ChatBot(const ChatBot &source);
+    ChatBot& operator=(const ChatBot &source);
+    ChatBot(ChatBot &&source);
+    ChatBot& operator=(ChatBot &&source);
 
     // getters / setters
     void SetCurrentNode(GraphNode *node);
