@@ -6,7 +6,7 @@
 // constructor WITHOUT memory allocation
 ChatBot::ChatBot()
 {
-    std::cout << "ChatBot Constructor 1" << std::endl;
+    //std::cout << "ChatBot Constructor 1" << std::endl;
     // invalidate data handles
     _image = nullptr;
     _chatLogic = nullptr;
@@ -49,6 +49,7 @@ ChatBot::ChatBot(const ChatBot &source) // copy constructor
     
 ChatBot& ChatBot::operator=(const ChatBot &source) // copy assignment operator
 {
+    
     std::cout << "ASSIGNING content of instance " << &source << " to instance " << this << std::endl;
     if (this == &source)
         return *this;
@@ -62,11 +63,13 @@ ChatBot& ChatBot::operator=(const ChatBot &source) // copy assignment operator
 
 ChatBot::ChatBot(ChatBot &&source) // move constructor
 {
-    std::cout << "MOVING (c’tor) instance " << &source << " to instance " << this << std::endl;
+    std::cout << "ChatBot Move Constructor \n";
+    //std::cout << "MOVING (c’tor) instance " << &source << " to instance " << this << std::endl;
     _image = source._image; 
     _currentNode = source._currentNode;
     _rootNode = source._rootNode;
     _chatLogic = source._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
 
     source._image = nullptr; 
     source._currentNode = nullptr;
@@ -76,7 +79,8 @@ ChatBot::ChatBot(ChatBot &&source) // move constructor
     
 ChatBot& ChatBot::operator=(ChatBot &&source) // move assignment operator
 {
-    std::cout << "MOVING (assign) instance " << &source << " to instance " << this << std::endl;
+    std::cout << "ChatBot Move Assignment Operator \n";
+    //std::cout << "MOVING (assign) instance " << &source << " to instance " << this << std::endl;
     if (this == &source)
         return *this;
 
@@ -85,6 +89,7 @@ ChatBot& ChatBot::operator=(ChatBot &&source) // move assignment operator
     _currentNode = source._currentNode;
     _rootNode = source._rootNode;
     _chatLogic = source._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
 
     source._image = nullptr; 
     source._currentNode = nullptr;
